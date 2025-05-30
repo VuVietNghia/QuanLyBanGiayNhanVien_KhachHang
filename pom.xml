@@ -13,19 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>QL_Ban_Giay</name>
     <description>QL_Ban_Giay</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -38,7 +25,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -50,16 +36,15 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.2</version> <!-- Phiên bản mới nhất tại thời điểm hiện tại -->
+            <version>3.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>8.0.1.Final</version> <!-- Phiên bản mới nhất tại thời điểm hiện tại -->
+            <version>8.0.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,8 +57,7 @@
             <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
-
-        <!--Kết nối SQL Server-->
+        <!-- Kết nối SQL Server -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -82,25 +66,6 @@
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>12.2.0.jre11</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!--JWT Token-->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>0.11.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <version>0.11.5</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId> <!-- or gson -->
-            <version>0.11.5</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
@@ -129,7 +94,6 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-
             <!-- Spring Boot Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -137,5 +101,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

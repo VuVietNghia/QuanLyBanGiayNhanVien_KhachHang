@@ -41,7 +41,7 @@ public class DangNhapNhanVienController {
             redirectAttributes.addFlashAttribute("error", "Vai trò không hợp lệ!");
             return "redirect:/dangNhapNhanVien";
         }
-        session.setAttribute("loggedInUser", nguoiDung); // Store user in session
+        session.setAttribute("loggedInUser", nguoiDung);
         if (role == 1) {
             model.addAttribute("template", "admin_nhanVien/Dashboard");
             return "layout/AdminLayout";

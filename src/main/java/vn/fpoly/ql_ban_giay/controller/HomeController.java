@@ -50,6 +50,10 @@ public class HomeController {
             redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập!");
             return "redirect:/dangNhapNhanVien";
         }
+        if (!isAdmin(session)) {
+            redirectAttributes.addFlashAttribute("error", "Bạn không có quyền truy cập!");
+            return "redirect:/dashboard";
+        }
         model.addAttribute("template", "admin_nhanVien/QuanLyDoanhThu");
         return getLayout(session);
     }
@@ -74,15 +78,15 @@ public class HomeController {
         return getLayout(session);
     }
 
-    @GetMapping("/quan-ly/khach-hang")
-    public String khachHang(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-        if (!isLoggedIn(session)) {
-            redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập!");
-            return "redirect:/dangNhapNhanVien";
-        }
-        model.addAttribute("template", "admin_nhanVien/QuanLyKhachHang");
-        return getLayout(session);
-    }
+//    @GetMapping("/quan-ly/khach-hang")
+//    public String khachHang(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+//        if (!isLoggedIn(session)) {
+//            redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập!");
+//            return "redirect:/dangNhapNhanVien";
+//        }
+//        model.addAttribute("template", "admin_nhanVien/QuanLyKhachHang");
+//        return getLayout(session);
+//    }
 
     @GetMapping("/quan-ly/nhan-vien")
     public String nhanVien(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
