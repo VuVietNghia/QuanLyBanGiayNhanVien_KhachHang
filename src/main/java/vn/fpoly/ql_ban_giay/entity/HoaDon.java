@@ -52,6 +52,21 @@ public class HoaDon {
     @Column(name = "xac_nhan_hoa_don")
     private Boolean xacNhanHoaDon;
 
+    @Column(name = "create_at")
+    private LocalDateTime createAt;
+
+    @Column(name = "create_by")
+    private String createBy;
+
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+
+    @Column(name = "update_by")
+    private String updateBy;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @ManyToOne
     @JoinColumn(name = "id_voucher")
     private Voucher voucher;

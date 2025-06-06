@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,6 +38,21 @@ public class ChiTietGiay {
 
     @Column(name = "trang_thai")
     private Boolean trangThai;
+
+    @Column(name = "create_at")
+    private LocalDateTime createAt;
+
+    @Column(name = "create_by")
+    private String createBy;
+
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+
+    @Column(name = "update_by")
+    private String updateBy;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 
     @ManyToOne
     @JoinColumn(name = "id_giay", referencedColumnName = "id")

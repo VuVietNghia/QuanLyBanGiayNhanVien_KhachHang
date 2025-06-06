@@ -2,11 +2,113 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quản lý nhân viên</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .container {
+            max-width: 95%;
+            margin: 0 auto;
+        }
+        .table-responsive {
+            margin: 0 auto;
+        }
+        .table {
+            font-size: 1.2rem;
+        }
+        th, td {
+            padding: 1rem;
+            vertical-align: middle;
+        }
+        .table th {
+            font-size: 1.3rem;
+        }
+        .btn-sm {
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+        }
+        .status-active {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .status-inactive {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: inline-block;
+            width: 150px;
+        }
+        .form-group input, .form-group select {
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
-<div th:fragment="content">
-    <h2>Quản lý nhân viên</h2>
+<div th:fragment="content" class="container mt-4">
+
+    <!-- Bảng danh sách nhân viên -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Mã nhân viên</th>
+                <th>Tên nhân viên</th>
+                <th>Email</th>
+                <th>SĐT</th>
+                <th>Giới tính</th>
+                <th>Ngày sinh</th>
+                <th>CCCD</th>
+                <th>Ngày đăng ký</th>
+                <th>Chức vụ</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="nv : ${listNV.content}" th:if="${!nv.isDeleted}">
+                <td th:text="${nv.maNhanVien}"></td>
+                <td th:text="${nv.hoTenNv}"></td>
+                <td th:text="${nv.email}"></td>
+                <td th:text="${nv.sdt}"></td>
+                <td th:text="${nv.gioiTinh == 1} ? 'Nam' : ${nv.gioiTinh == 2} ? 'Nữ' : 'Khác'"></td>
+                <td th:text="${#dates.format(nv.ngaySinh, 'dd/MM/yyyy')}"></td>
+                <td th:text="${nv.cccd}"></td>
+                <td th:text="${#temporals.format(nv.ngayDangKy, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${nv.role == 1} ? 'Admin' : 'Nhân Viên'"></td>
+                <td>
+                    <span th:class="${nv.trangThai} ? 'badge bg-success' : 'badge bg-danger'"
+                          th:text="${nv.trangThai} ? 'Hoạt động' : 'Ngừng hoạt động'"></span>
+                </td>
+                <td>
+                    <a th:href="@{/admin/nhanVien/sua/{id}(id=${nv.id}, pageNV=${listNV.number}, sizeNV=${listNV.size})}" class="btn btn-sm btn-warning">Sửa</a>
+                    <a th:href="@{/admin/nhanVien/xoa/{id}(id=${nv.id}, pageNV=${listNV.number}, sizeNV=${listNV.size})}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa nhân viên này?')">Xóa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Phân trang -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${!listNV.hasPrevious()} ? 'disabled'">
+                <a class="page-link" th:href="@{/quan-ly/nhan-vien(pageNV=${listNV.number - 1}, sizeNV=${listNV.size})}">Previous</a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0, tongTrang - 1)}"
+                th:classappend="${i == listNV.number} ? 'active'">
+                <a class="page-link" th:href="@{/quan-ly/nhan-vien(pageNV=${i}, sizeNV=${listNV.size})}" th:text="${i + 1}"></a>
+            </li>
+            <li class="page-item" th:classappend="${!listNV.hasNext()} ? 'disabled'">
+                <a class="page-link" th:href="@{/quan-ly/nhan-vien(pageNV=${listNV.number + 1}, sizeNV=${listNV.size})}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOdihs3H7+c7RnFl7+3Y7f" crossorigin="anonymous"></script>
 </body>
 </html>

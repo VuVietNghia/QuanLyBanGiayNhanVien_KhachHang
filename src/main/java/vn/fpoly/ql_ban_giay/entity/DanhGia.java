@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -33,6 +35,21 @@ public class DanhGia {
     @Min(0)
     @Column(name = "danh_gia_huu_ich")
     private Integer danhGiaHuuIch;
+
+    @Column(name = "create_at")
+    private LocalDateTime createAt;
+
+    @Column(name = "create_by")
+    private String createBy;
+
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+
+    @Column(name = "update_by")
+    private String updateBy;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 
     @Min(0)
     @Column(name = "danh_gia_khong_huu_ich")

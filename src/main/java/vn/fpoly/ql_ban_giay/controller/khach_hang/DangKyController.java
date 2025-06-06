@@ -14,7 +14,6 @@ import vn.fpoly.ql_ban_giay.entity.KhachHang;
 import vn.fpoly.ql_ban_giay.service.KhachHangService;
 
 import jakarta.validation.Valid;
-import java.time.LocalDateTime;
 
 @Controller
 public class DangKyController {
@@ -54,8 +53,9 @@ public class DangKyController {
         }
 
         khachHang.setTrangThai(true);
-        khachHang.setNgayDangKy(LocalDateTime.now());
-        khachHangService.saveKhachHang(khachHang);
+        khachHang.setIsDeleted(false); // Đảm bảo isDeleted = false cho khách hàng mới
+        khachHang.setCreateBy(khachHang.getEmail()); // Gán createBy bằng email khách hàng
+        khachHangService.saveKhachHang(khachHang, khachHang.getEmail()); // Gán updateBy bằng email khách hàng
         redirectAttributes.addFlashAttribute("successMessage", "Đăng ký tài khoản thành công!");
         return "redirect:/dangKyKhachHang";
     }

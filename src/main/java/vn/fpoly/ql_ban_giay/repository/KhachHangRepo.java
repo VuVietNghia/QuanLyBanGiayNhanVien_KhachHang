@@ -8,5 +8,7 @@ import vn.fpoly.ql_ban_giay.entity.KhachHang;
 public interface KhachHangRepo extends JpaRepository<KhachHang, Integer> {
     boolean existsByEmail(String email);
     KhachHang findByEmailAndPassword(String email, String password);
+    KhachHang findByEmail(String email);
     Page<KhachHang> findAll(Pageable pageable);
+    Page<KhachHang> findByIsDeletedFalse(Pageable pageable);
 }

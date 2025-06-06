@@ -15,4 +15,8 @@ public class DiaChiGiaoHangService {
     public List<DiaChiGiaoHang> getAllDiaChiGiaoHang() {
         return diaChiGiaoHangRepo.findAll();
     }
+
+    public List<DiaChiGiaoHang> getAllDiaChiGiaoHangNotDeleted() {
+        return diaChiGiaoHangRepo.findByIsDeletedFalse();
+    }
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -25,4 +27,19 @@ public class Giay {
 
     @Column(name = "trang_thai")
     private Boolean trangThai; // 1: còn hàng, 2: hết hàng
+
+    @Column(name = "create_at")
+    private LocalDateTime createAt;
+
+    @Column(name = "create_by")
+    private String createBy;
+
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+
+    @Column(name = "update_by")
+    private String updateBy;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 }

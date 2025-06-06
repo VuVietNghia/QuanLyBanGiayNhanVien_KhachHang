@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -22,6 +24,24 @@ public class DiaChiGiaoHang {
 
     @Column(name = "mac_dinh")
     private Boolean macDinh;
+
+    @Column(name = "sdt_dia_chi")
+    private String sdt_dia_chi;
+
+    @Column(name = "create_at")
+    private LocalDateTime createAt;
+
+    @Column(name = "create_by")
+    private String createBy;
+
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+
+    @Column(name = "update_by")
+    private String updateBy;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 
     @ManyToOne
     @JoinColumn(name = "id_khach_hang")

@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,7 +24,7 @@ public class NhanVien {
     private String maNhanVien;
 
     @Column(name = "ho_ten_nv")
-    private String hoTenNV;
+    private String hoTenNv;
 
     @Column(name = "email")
     private String email;
@@ -39,7 +39,7 @@ public class NhanVien {
     private Integer gioiTinh;
 
     @Column(name = "ngay_sinh")
-    private Date ngaySinh;
+    private LocalDateTime ngaySinh;
 
     @Column(name = "cccd")
     private String cccd;
@@ -53,6 +53,38 @@ public class NhanVien {
     @Column(name = "avatar")
     private String avatar;
 
+    @Column(name = "create_at")
+    private LocalDateTime createAt;
+
+    @Column(name = "create_by")
+    private String createBy;
+
+    @Column(name = "update_at")
+    private LocalDateTime updateAt;
+
+    @Column(name = "update_by")
+    private String updateBy;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @Column(name = "trang_thai")
     private Boolean trangThai;
+
+    @PrePersist
+    public void prePersist() {
+        if (createAt == null) {
+            createAt = LocalDateTime.now();
+        }
+        if (ngayDangKy == null) {
+            ngayDangKy = LocalDateTime.now();
+        }
+        // createBy phải được gán từ controller hoặc service
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updateAt = LocalDateTime.now();
+        // updateBy phải được gán từ controller hoặc service
+    }
 }

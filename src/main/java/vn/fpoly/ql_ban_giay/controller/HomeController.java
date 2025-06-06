@@ -88,19 +88,19 @@ public class HomeController {
 //        return getLayout(session);
 //    }
 
-    @GetMapping("/quan-ly/nhan-vien")
-    public String nhanVien(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-        if (!isLoggedIn(session)) {
-            redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập!");
-            return "redirect:/dangNhapNhanVien";
-        }
-        if (!isAdmin(session)) {
-            redirectAttributes.addFlashAttribute("error", "Bạn không có quyền truy cập!");
-            return "redirect:/dashboard";
-        }
-        model.addAttribute("template", "admin_nhanVien/QuanLyNhanVien");
-        return "layout/AdminLayout";
-    }
+//    @GetMapping("/quan-ly/nhan-vien")
+//    public String nhanVien(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+//        if (!isLoggedIn(session)) {
+//            redirectAttributes.addFlashAttribute("error", "Vui lòng đăng nhập!");
+//            return "redirect:/dangNhapNhanVien";
+//        }
+//        if (!isAdmin(session)) {
+//            redirectAttributes.addFlashAttribute("error", "Bạn không có quyền truy cập!");
+//            return "redirect:/dashboard";
+//        }
+//        model.addAttribute("template", "admin_nhanVien/QuanLyNhanVien");
+//        return "layout/AdminLayout";
+//    }
 
     @GetMapping("/quan-ly/voucher")
     public String voucher(Model model, HttpSession session, RedirectAttributes redirectAttributes) {

@@ -8,8 +8,6 @@ import vn.fpoly.ql_ban_giay.entity.KhachHang;
 import vn.fpoly.ql_ban_giay.repository.KhachHangRepo;
 import vn.fpoly.ql_ban_giay.repository.NhanVienRepo;
 
-import java.util.List;
-
 @Service
 public class KhachHangService {
     @Autowired
@@ -22,12 +20,25 @@ public class KhachHangService {
         return khachHangRepo.findAll(PageRequest.of(page, size));
     }
 
+    public Page<KhachHang> getAllKhachHangNotDeleted(int page, int size) {
+        return khachHangRepo.findByIsDeletedFalse(PageRequest.of(page, size));
+    }
+
+    public KhachHang getByEmail(String email) {
+        return khachHangRepo.findByEmail(email);
+    }
+
     public KhachHang loginKhachHang(String email, String password) {
         return khachHangRepo.findByEmailAndPassword(email, password);
     }
 
-    public void saveKhachHang(KhachHang khachHang) {
-        khachHangRepo.save(khachHang);
+    public KhachHang saveKhachHang(KhachHang khachHang, String updatedBy) {
+        khachHang.setUpdateBy(updatedBy); // Gán updateBy trước khi lưu
+        return khachHangRepo.save(khachHang);
+    }
+
+    public KhachHang getByIdKhachHang(Integer id) {
+        return khachHangRepo.findById(id).orElse(null);
     }
 
     public Boolean checkEmailNhanVien(String email) {
